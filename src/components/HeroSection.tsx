@@ -21,10 +21,19 @@ const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="shadow-glow">
+              <Button 
+                variant="hero" 
+                size="lg" 
+                className="shadow-glow"
+                onClick={() => window.location.href = '/auth'}
+              >
                 Encontrar Pintores
               </Button>
-              <Button variant="outline" size="lg">
+              <Button 
+                variant="outline" 
+                size="lg"
+                onClick={() => window.location.href = '/auth'}
+              >
                 Sou Pintor
               </Button>
             </div>

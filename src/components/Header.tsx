@@ -1,6 +1,19 @@
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAuthClick = () => {
+    if (user) {
+      navigate('/dashboard');
+    } else {
+      navigate('/auth');
+    }
+  };
+
   return (
     <header className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b z-50">
       <div className="container mx-auto px-6 py-4">
@@ -25,12 +38,20 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center space-x-3">
-            <Button variant="ghost" size="sm">
-              Entrar
-            </Button>
-            <Button variant="hero" size="sm">
-              Cadastrar-se
-            </Button>
+            {user ? (
+              <Button variant="hero" size="sm" onClick={handleAuthClick}>
+                Dashboard
+              </Button>
+            ) : (
+              <>
+                <Button variant="ghost" size="sm" onClick={handleAuthClick}>
+                  Entrar
+                </Button>
+                <Button variant="hero" size="sm" onClick={handleAuthClick}>
+                  Cadastrar-se
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>
